@@ -1,15 +1,14 @@
 const IOST = require("@kunroku/iost");
-
 const iost_config = require("../config/iost.json");
 const { id, secret_key } = require("../config/account.json");
+const parse_args = require('./parse_args');
 
-const amount_in_args = process.argv.find(e => e.startsWith("amount:"));
-if (!amount_in_args)
-  throw new Error("amount not found in args");
-
-const amount = Number(amount_in_args.replace("amount:", ""));
-if (Number.isNaN(amount))
-  throw new Error("amount is NaN");
+const { amount } = parse_args({
+  amount: (value) => {
+    if (Number.isNaN(Number(value)))
+      throw new Error("amount is required number type");
+  }
+});
 
 const iost = new IOST(iost_config);
 const account = new IOST.Account(id);

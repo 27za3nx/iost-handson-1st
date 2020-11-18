@@ -63,17 +63,17 @@ npm run update
 ```payment_id = "test_01", "total_amount = "30", payers_length = 1``` で支払いを作成。
 
 ```
-npm run warikan:set '["test_01", "30", 1]'
+npm run warikan:set pid:test_01 amount:30 length:1
 ```
 
 ```payment_id = "test_01"```の支払いを実行。
 
 ```
-npm run warikan:pay '["test_01"]'
+npm run warikan:pay pid:test_01
 ```
 
 ```payment_id = "test_01"```の支払いを精算。
 
 ```
-npm run warikan:check '["test_01"]'
+npm run warikan:check pid:test_01
 ```
