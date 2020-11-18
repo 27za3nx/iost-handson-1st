@@ -11,10 +11,8 @@ class Warikan {
    * @returns {boolean}
    */
   can_update(data) {
-    if (!blockchain.requireAuth(blockchain.contractOwner(), "active"))
-      throw new Error("permission_denied");
-    if (storage.get("freeze") !== "true")
-      throw new Error("contract_not_freezed");
+    this._require_owner_auth();
+    this._require_freezed();
     return true;
   }
   /**
@@ -23,10 +21,8 @@ class Warikan {
    * and you can update this contract
    */
   freeze() {
-    if (!blockchain.requireAuth(blockchain.contractOwner(), "active"))
-      throw new Error("permission_denied");
-    if (storage.get("freeze") !== "false")
-      throw new Error("contract already freezed");
+    this._require_owner_auth();
+    this._require_unfreezed();
     storage.put("freeze", "true");
   }
   /**
@@ -35,10 +31,8 @@ class Warikan {
    * and you cannnot update this contract
    */
   unfreeze() {
-    if (!blockchain.requireAuth(blockchain.contractOwner(), "active"))
-      throw new Error("permission_denied");
-    if (storage.get("freeze") !== "true")
-      throw new Error("contract_not_freezed");
+    this._require_owner_auth();
+    this._require_freezed();
     storage.put("freeze", "false");
   }
   /**
@@ -48,8 +42,7 @@ class Warikan {
    * @param {number} payers_length 
    */
   set(payment_id, total_amount_str, payers_length) {
-    if (storage.get("freeze") !== "false")
-      throw new Error("contract_freezed");
+    this._require_unfreezed();
     if (storage.mapHas("payment", payment_id))
       throw new Error("payment_id_already_exists");
     const total_amount = Number(total_amount_str);
@@ -70,8 +63,7 @@ class Warikan {
    * @param {string} payment_id 
    */
   pay(payment_id) {
-    if (storage.get("freeze") !== "false")
-      throw new Error("contract_freezed");
+    this._require_unfreezed();
     const payment_info = JSON.parse(storage.mapGet("payment", payment_id));
     if (!payment_info)
       throw new Error("payment_not_found");
@@ -94,8 +86,7 @@ class Warikan {
    * @param {string} payment_id 
    */
   check(payment_id) {
-    if (storage.get("freeze") !== "false")
-      throw new Error("contract_freezed");
+    this._require_unfreezed();
     const payment_info = JSON.parse(storage.mapGet("payment", payment_id));
     if (!payment_info)
       throw new Error("payment_not_found");
@@ -109,6 +100,27 @@ class Warikan {
     storage.mapDel("payment", payment_id);
     storage.mapDel("payers", payment_id);
     blockchain.receipt(JSON.stringify(payment_info));
+  }
+  /**
+   * 
+   */
+  _require_freezed() {
+    if (storage.get("freeze") !== "true")
+      throw new Error("contract_unfreezed");
+  }
+  /**
+   * 
+   */
+  _require_unfreezed() {
+    if (storage.get("freeze") !== "false")
+      throw new Error("contract_freezed");
+  }
+  /**
+   * 
+   */
+  _require_owner_auth() {
+    if (!blockchain.requireAuth(blockchain.contractOwner(), "active"))
+      throw new Error("permission_denied");
   }
   /**
    * calculate total_amount and payers_length to unit_amount
