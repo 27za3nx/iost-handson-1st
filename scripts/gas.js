@@ -7,6 +7,7 @@ const { amount } = parse_args({
   amount: (value) => {
     if (Number.isNaN(Number(value)))
       throw new Error("amount is required number type");
+    return value;
   }
 });
 
