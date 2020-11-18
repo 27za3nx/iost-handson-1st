@@ -1,0 +1,24 @@
+{
+  "name": "iost-handson-1st",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "publish": "node scripts/publish",
+    "update": "node scripts/update",
+    "ram": "node scripts/ram",
+    "gas": "node scripts/gas",
+    "warikan:set": "node scripts/set",
+    "warikan:pay": "node scripts/pay",
+    "warikan:check": "node scripts/check"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@kunroku/iost": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/iost-contract": "^3.4.1"
+  }
+}

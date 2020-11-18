@@ -1,0 +1,55 @@
+{
+    "lang": "javascript",
+    "version": "1.0.0",
+    "abi": [
+        {
+            "name": "can_update",
+            "args": [
+                "string"
+            ],
+            "amountLimit": [],
+            "description": ""
+        },
+        {
+            "name": "freeze",
+            "args": [],
+            "amountLimit": [],
+            "description": ""
+        },
+        {
+            "name": "unfreeze",
+            "args": [],
+            "amountLimit": [],
+            "description": ""
+        },
+        {
+            "name": "set",
+            "args": [
+                "string",
+                "string",
+                "number"
+            ],
+            "amountLimit": [],
+            "description": ""
+        },
+        {
+            "name": "pay",
+            "args": [
+                "string"
+            ],
+            "amountLimit": [{
+                "token": "iost",
+                "val": "unlimited"
+            }],
+            "description": ""
+        },
+        {
+            "name": "check",
+            "args": [
+                "string"
+            ],
+            "amountLimit": [],
+            "description": ""
+        }
+    ]
+}
