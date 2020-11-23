@@ -98,7 +98,6 @@ class Warikan {
       `warikan check: ${payment_id}`
     );
     storage.mapDel("payment", payment_id);
-    storage.mapDel("payers", payment_id);
     blockchain.receipt(JSON.stringify(payment_info));
   }
   /**
