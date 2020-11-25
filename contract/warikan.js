@@ -46,6 +46,8 @@ class Warikan {
     if (storage.mapHas("payment", payment_id))
       throw new Error("payment_id_already_exists");
     const total_amount = Number(total_amount_str);
+    if (Number.isNaN(total_amount))
+      throw new Error("total_amount_is_NaN");
     if (total_amount < 0)
       throw new Error("invalid_total_amount");
     if (payers_length < 1 || 30 < payers_length)
