@@ -53,12 +53,7 @@ class Warikan {
     if (payers_length < 1 || 30 < payers_length)
       throw new Error("invalid_payers_length");
     const unit_amount = this._calc_unit_amount(total_amount, payers_length);
-    storage.mapPut("payment", payment_id, JSON.stringify({
-      unit_amount,
-      receiver: tx.publisher,
-      payers: [],
-      payers_length
-    }));
+    //  add here
   }
   /**
    * pay segmented fee
@@ -71,11 +66,7 @@ class Warikan {
       throw new Error("payment_not_found");
     if (payment_info.payers.length === payment_info.payers_length)
       throw new Error("already_payment_completed");
-    blockchain.deposit(
-      tx.publisher,
-      payment_info.unit_amount.toString(),
-      `warikan deposit :${payment_id}`
-    );
+    // add here
     payment_info.payers.push(tx.publisher);
     storage.mapPut("payment", payment_id, JSON.stringify(payment_info));
   }
@@ -90,11 +81,7 @@ class Warikan {
       throw new Error("payment_not_found");
     if (payment_info.payers.length !== payment_info.payers_length)
       throw new Error("payment_not_completed");
-    blockchain.withdraw(
-      payment_info.receiver,
-      (payment_info.unit_amount * payment_info.payers_length).toString(),
-      `warikan check: ${payment_id}`
-    );
+    // add here
     storage.mapDel("payment", payment_id);
     blockchain.receipt(JSON.stringify(payment_info));
   }
