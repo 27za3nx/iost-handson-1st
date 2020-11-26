@@ -71,10 +71,6 @@ class Warikan {
       throw new Error("payment_not_found");
     if (payment_info.payers.length === payment_info.payers_length)
       throw new Error("already_payment_completed");
-    // if you don't allow duplicated pay,
-    // please turn off comment out of under 2 lines
-    // if (payment_info.payers.indexOf(tx.publisher) !== -1)
-    //   throw new Error("already_payed");
     blockchain.deposit(
       tx.publisher,
       payment_info.unit_amount.toString(),
@@ -93,7 +89,7 @@ class Warikan {
     if (!payment_info)
       throw new Error("payment_not_found");
     if (payment_info.payers.length !== payment_info.payers_length)
-      throw new Error("payment not completed");
+      throw new Error("payment_not_completed");
     blockchain.withdraw(
       payment_info.receiver,
       (payment_info.unit_amount * payment_info.payers_length).toString(),
