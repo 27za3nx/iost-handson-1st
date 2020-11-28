@@ -8,6 +8,7 @@
     "update": "node scripts/update",
     "ram": "node scripts/ram",
     "gas": "node scripts/gas",
+    "balance": "node scripts/balance",
     "warikan:set": "node scripts/set",
     "warikan:pay": "node scripts/pay",
     "warikan:check": "node scripts/check",

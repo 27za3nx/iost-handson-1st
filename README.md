@@ -43,6 +43,12 @@ npm run ram amount:3000
 npm run gas amount:10
 ```
 
+トークンの残高を確認。
+
+```
+npm run balance id:<<account_id_or_contract_address>>
+```
+
 
 ### スマートコントラクトのデプロイなど
 スマートコントラクトのデプロイを実行する。
