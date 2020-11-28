@@ -10,7 +10,8 @@
     "gas": "node scripts/gas",
     "warikan:set": "node scripts/set",
     "warikan:pay": "node scripts/pay",
-    "warikan:check": "node scripts/check"
+    "warikan:check": "node scripts/check",
+    "warikan:view": "node scripts/view"
   },
   "keywords": [],
   "author": "",
