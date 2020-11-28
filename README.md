@@ -77,3 +77,9 @@ npm run warikan:pay pid:test_01
 ```
 npm run warikan:check pid:test_01
 ```
+
+```payment_id = "test_01"```の支払い情報を表示。
+
+```
+npm run warikan:view pid:test_01
+```
